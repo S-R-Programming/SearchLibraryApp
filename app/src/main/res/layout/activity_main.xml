@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/button_search"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="532dp"
+        android:backgroundTint="#ff60b4"
+        android:onClick="search"
+        android:text="検索"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_load"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="600dp"
+        android:backgroundTint="#00bfff"
+        android:onClick="reload"
+        android:text="再読み込み"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/isbnText"
+        android:layout_width="230dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginLeft="96dp"
+        android:layout_marginTop="332dp"
+        android:layout_marginEnd="96dp"
+        android:layout_marginRight="96dp"
+        android:backgroundTint="#dcdcdc"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="調べたISBNを入力"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/black"
+        android:textColorHint="#dcdcdc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/locationText"
+        android:layout_width="230dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginLeft="96dp"
+        android:layout_marginTop="416dp"
+        android:layout_marginEnd="96dp"
+        android:layout_marginRight="96dp"
+        android:backgroundTint="#dcdcdc"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="例：Hyogo_Kobe"
+        android:inputType="textUri"
+        android:textColor="@color/black"
+        android:textColorHint="#dcdcdc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/bookText"
+        android:layout_width="224dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="212dp"
+        android:backgroundTint="#dcdcdc"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="書籍名を入力してください"
+        android:inputType="textPersonName"
+        android:textColor="@color/black"
+        android:textColorHint="#dcdcdc"
+        android:textSize="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_isbn"
+        android:layout_width="49dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="212dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:backgroundTint="#008080"
+        android:onClick="searchISBN"
+        android:padding="0.2dp"
+        android:text="ISBN\n検索"
+        android:textColor="@color/white"
+        android:textSize="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="108dp"
+        android:layout_marginLeft="108dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="108dp"
+        android:layout_marginRight="108dp"
+        android:fontFamily="@font/pop"
+        android:text="図書館在庫確認アプリ"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/step1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="172dp"
+        android:text="Step① 書籍のISBN(コード)を検索"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/step"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="288dp"
+        android:text="Step② ISBNと地名を入力"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/isbnAttention"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="※半角数字"
+        android:textColor="#dcdcdc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/isbnText" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:text="※都道府県_都市名のローマ字半角\nローマ字の先頭は大文字です"
+        android:textColor="#dcdcdc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/locationText" />
+
+    <TextView
+        android:id="@+id/reloadAttention"
+        android:layout_width="304dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="32dp"
+        android:gravity="center"
+        android:text="※検索に失敗した場合はもう1度検索するか、\n再読み込みしてください"
+        android:textColor="#dcdcdc"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:layout_width="81dp"
+        android:layout_height="79dp"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/tosyokan_book_tana"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
