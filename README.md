@@ -11,10 +11,10 @@ Android Studio (Java)
 トップ画面は以下です。<br><br>
 <img src="https://user-images.githubusercontent.com/89324742/141609340-a5c42e32-c960-409d-9c15-14964e0c5b62.png"
      width="400px"><br><br>
-ステップ①<br>まず借りたい本のISBN(本に割り当てられたコード)を検索します。<br><br>
+ステップ①<br>まず借りたい本のISBN(本に割り当てられたコード)を検索します。本の名前を入力します。<br><br>
 <img src="https://user-images.githubusercontent.com/89324742/141609373-b42cb375-163a-4916-b1d4-5b5a03c365f7.png"
      width="400px"><br><br>
-   本の名前を入力し、「ISBN検索ボタン」を押すとGoogle検索の画面に遷移し、ISBNが確認出来ます。<br><br>
+   そして「ISBN検索ボタン」を押すとGoogle検索の画面に遷移し、ISBNが確認出来ます。<br><br>
    <img src="https://user-images.githubusercontent.com/89324742/141609422-95d9253e-2e36-4845-b7fa-1a6d72c09f45.png"
         width="400px"><br><br>
         ステップ②<br>そして確認したISBNと地名のローマ字(都道府県_都市名、先頭は大文字)を入力します。
