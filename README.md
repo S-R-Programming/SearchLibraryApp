@@ -11,22 +11,20 @@ Android Studio (Java)
 トップ画面は以下です。<br><br>
 <img src="https://user-images.githubusercontent.com/89324742/141609340-a5c42e32-c960-409d-9c15-14964e0c5b62.png"
      width="400px"><br><br>
-まず借りたい本のISBN(本に割り当てられたコード)を検索します。<br><br>
+ステップ①<br>まず借りたい本のISBN(本に割り当てられたコード)を検索します。<br><br>
 <img src="https://user-images.githubusercontent.com/89324742/141609373-b42cb375-163a-4916-b1d4-5b5a03c365f7.png"
      width="400px"><br><br>
-   メールアドレス(Gmailのみ)とパスワード(6文字以上)を入力して、「新規登録」ボタンを押します。これでアカウントが作成されます。<br>
-   次に以下のような画面へ遷移します。<br><br>
-   <img src="https://user-images.githubusercontent.com/89324742/140569825-1061cfa9-c79f-45a6-996e-025a302458b0.png"
+   本の名前を入力し、「ISBN検索ボタン」を押すとGoogle検索の画面に遷移し、ISBNが確認出来ます。<br><br>
+   <img src="https://user-images.githubusercontent.com/89324742/141609422-95d9253e-2e36-4845-b7fa-1a6d72c09f45.png"
         width="400px"><br><br>
-「何で？」のところに「何を我慢して節約したか」、「何円節約」のところに「具体的な金額」を入力して「確定」ボタンを押します。すると、<br><br>
-<img src = "https://user-images.githubusercontent.com/89324742/140570242-162dc5d9-4cc8-4ec1-a6dc-10acd3934801.png"
+        ステップ②<br>そして確認したISBNと地名のローマ字(都道府県_都市名、先頭は大文字)を入力します。
+<br><br>
+<img src = "https://user-images.githubusercontent.com/89324742/141609458-08f512d6-32b6-41a6-b61b-d4e06b0a14f7.png"
      width="400px"><br><br>
-このようにリストで記録されます。このリストを押すと、Tweetの画面へ移り、我慢した内容をTweet出来ます。<br><br>
-<img src = "https://user-images.githubusercontent.com/89324742/140570642-f76bbe5d-0281-41c6-be3b-6c4bc54a499c.png"
+そして「検索ボタン」を押すと蔵書を確認出来る画面に遷移します。<br><br>
+<img src = "https://user-images.githubusercontent.com/89324742/141609500-5dcc3048-f9c1-41c7-9a2b-4091756e3eeb.png"
      width="400px"><br><br>
-     先ほどの履歴の画面で「目安」ボタンを押すと、おおよその価格が表示されます。<br><br>
- <img src="https://user-images.githubusercontent.com/89324742/140571111-7bd2652f-33eb-4120-b089-da48eec46b3d.png"
-      width="400px">
+  
 
 ## 工夫点
 ・現在、自分が持っているAndroidアプリ開発の知識を使いました。<br>・Firebaseを用いたアカウント作成、ログイン機能、データベース管理<br>・Twitterでツイート出来るようにしました
