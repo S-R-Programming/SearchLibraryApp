@@ -11,6 +11,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,9 +34,10 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText search_isbn_text,location_text,isbn_text;
-    private String session;
-    String isbn_search,isbn_string, location_string;
+    EditText book_text,location_text,isbn_text;
+    private String session;//再読み込みに必要
+    String book_string,isbn_string, location_string;
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +45,39 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         location_text = findViewById(R.id.locationText);
         isbn_text = findViewById(R.id.isbnText);
-        search_isbn_text = findViewById(R.id.bookText);
-    }
-    //jsonデータの例
-    //{"session": "fa7ca42bb7aea9130f418653ffb09769", "continue": 0, "books": {"9780307593313": {"Hyogo_Kobe": {"status": "OK", "libkey": {"中央図書館": "貸出可", "灘図書館": "貸出可"}, "reserveurl": "https://www.lib.city.kobe.jp/opac/opacs/find_detailbook?mode=one_line&type=PvolBook&kobeid=CT%3A7200120682&pvolid=PV%3A7200280596"}}}}
+        book_text = findViewById(R.id.bookText);
+        //広告の初期化
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
 
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+    }
+
+    /* 取得するjsonデータの例
+    {
+         "session":"fa7ca42bb7aea9130f418653ffb09769",
+         "continue": 0,
+         "books": {
+                     "9780307593313": {
+                                        "Hyogo_Kobe": {
+                                                        "status": "OK",
+                                                        "libkey": {
+                                                                        "中央図書館": "貸出可",
+                                                                         "灘図書館": "貸出可"
+                                                                   },
+                                                        "reserveurl": "https://www.lib.city.kobe.jp/opac/opacs/find_detailbook?mode=one_line&type=PvolBook&kobeid=CT%3A7200120682&pvolid=PV%3A7200280596"
+                                                       }
+                                      }
+                 }
+     }
+     */
+
+    //在庫検索のRequest。urlにはISBN、地名が必要
     public void searchHttpRequest(String url) throws IOException{
 
         String isbn_string = isbn_text.getText().toString();//ISBNの入力を取得
@@ -81,23 +116,24 @@ public class MainActivity extends AppCompatActivity {
                             JSONObject books = rootJSON.getJSONObject("books");
                             JSONObject isbn = books.getJSONObject(isbn_string);
                             JSONObject location = isbn.getJSONObject(location_string);
-                            String reserveurl = location.getString("reserveurl");//在庫情報のURLを取得
+                            //在庫情報のURLを取得
+                            String reserveurl = location.getString("reserveurl");
                             Log.i("reserveurl ",reserveurl);
                             if(reserveurl.equals("")==false){
                                 Uri uri = Uri.parse(reserveurl);
-                                Intent intent = new Intent(Intent.ACTION_VIEW,uri);//Intentでサイトへ
+                                //Intentで在庫情報のサイトへ
+                                Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                                 startActivity(intent);
                             }
                         }
                         catch(JSONException ex) {
                             Log.e("JSON_ERROR", "JSON解析失敗", ex);
                         }
-
-
                     }
                 });
     }
 
+    //再読み込みのRequest。urlにはsessionのみ必要
     public void sessionHttpRequest(String url) throws IOException{
 
         //OkHttpClient生成
@@ -133,27 +169,31 @@ public class MainActivity extends AppCompatActivity {
                             JSONObject books = rootJSON.getJSONObject("books");
                             JSONObject isbn = books.getJSONObject(isbn_string);
                             JSONObject location = isbn.getJSONObject(location_string);
-                            String reserveurl = location.getString("reserveurl");//在庫情報のURLを取得
+                            //在庫情報のURLを取得
+                            String reserveurl = location.getString("reserveurl");
                             Log.i("reserveurl ",reserveurl);
                             if(reserveurl.equals("")==false){
                                 Uri uri = Uri.parse(reserveurl);
-                                Intent intent = new Intent(Intent.ACTION_VIEW,uri);//Intentでサイトへ
+                                //Intentで在庫情報のサイトへ
+                                Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                                 startActivity(intent);
                             }
                         }
                         catch(JSONException ex) {
                             Log.e("JSON_ERROR", "JSON解析失敗", ex);
                         }
-                        
+
                     }
                 });
     }
 
-    public void search(View view){//検索ボタン
-
-       isbn_string = isbn_text.getText().toString();//ISBNの入力を取得
+    //在庫検索ボタンを押したとき
+    public void search(View view){
+        //ISBNの入力を取得
+       isbn_string = isbn_text.getText().toString();
        Log.i("isbn_string",isbn_string);
-       location_string = location_text.getText().toString();//地名の入力を取得
+        //地名の入力を取得
+       location_string = location_text.getText().toString();
        String search_url = "https://api.calil.jp/check?appkey=ac8bea11c70423bc1a3b4b8fde42e19d&isbn="+isbn_string+"&systemid="+location_string+"&format=json&callback=no";
 
         if(isbn_string.equals("")==false&&location_string.equals("")==false){
@@ -166,7 +206,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void reload(View view){//再読み込みボタン
+    //再読み込みボタンを押したとき
+    public void reload(View view){
 
         String reload_url = "https://api.calil.jp/check?appkey=ac8bea11c70423bc1a3b4b8fde42e19d&session="+session+"&format=json&callback=no";
 
@@ -178,14 +219,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void searchISBN(View view){//ISBN検索ボタン
-        isbn_search = search_isbn_text.getText().toString();//書籍の名前
-        if(isbn_search.equals("")==false){
+    //ISBN検索ボタンを押したとき
+    public void searchISBN(View view){
+        //書籍の名前を取得
+        book_string = book_text.getText().toString();
+        if(book_string.equals("")==false){
             Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
             intent.setClassName("com.google.android.googlequicksearchbox",
                 "com.google.android.googlequicksearchbox.SearchActivity");
-            intent.putExtra(SearchManager.QUERY, isbn_search+"　ISBN");//検索ワードを登録
-            startActivity(intent);//Googleの検索画面へ
+            //検索ワードを登録
+            intent.putExtra(SearchManager.QUERY, book_string +"　ISBN");
+            //Googleの検索画面へ
+            startActivity(intent);
         }
     }
 

@@ -3,7 +3,10 @@
     package="com.websarva.wings.android.kariru1">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <application
+    <application>
+        <meta-data
+        android:name="com.google.android.gms.ads.APPLICATION_ID"
+        android:value="ca-app-pub-3568203189797832~5730152521"/>
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kariru1">
         <activity android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.Kariru1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
